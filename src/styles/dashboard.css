@@ -1,0 +1,142 @@
+.dashboard-greeting {
+    margin-bottom: 24px;
+}
+
+.dashboard-greeting-tittle {
+    margin: 0;
+    font-size: 22px;
+    font-weight: 700;
+    color: #0f172a;
+}
+
+.dashboard-greeting-text {
+  margin: 4px 0 0;
+  font-size: 14px;
+  color: #64748b;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 16px;
+    width: 100%
+}
+
+.stats-grid > .stat-card {
+  width: auto;
+  min-width: 0;
+}
+
+.stat-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 20px;
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+}
+
+.stat-card-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+}
+
+.stat-card-icon svg {
+  font-size: 24px;
+}
+
+.stat-card-icon--indigo {
+  background-color: #eef2ff;
+  color: #4f46e5;
+}
+
+.stat-card-icon--blue {
+  background-color: #eff6ff;
+  color: #2563eb;
+}
+
+.stat-card-icon--pink {
+  background-color: #fdf2f8;
+  color: #db2777;
+}
+
+.stat-card-icon--green {
+  background-color: #ecfdf5;
+  color: #059669;
+}
+
+.stat-card-info {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.stat-card-value {
+  font-size: 26px;
+  font-weight: 700;
+  line-height: 1.1;
+  color: #0f172a;
+}
+
+.stat-card-label {
+  margin-top: 4px;
+  font-size: 13px;
+  color: #64748b;
+  white-space: nowrap;
+}
+
+@media (max-width: 1024px) {
+  .stats-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+  }
+}
+
+@media (max-width: 768px) {
+  .stats-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 12px;
+  }
+
+  .stat-card {
+    padding: 14px;
+    gap: 12px;
+  }
+
+  .stat-card-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+  }
+
+  .stat-card-icon svg {
+    font-size: 20px;
+  }
+
+  .stat-card-value {
+    font-size: 22px;
+  }
+
+  .stat-card-label {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .stat-card {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .stat-card-label {
+    white-space: normal;
+  }
+}

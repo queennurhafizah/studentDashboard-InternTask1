@@ -7,6 +7,7 @@ import "./globals.css";
 import "@/styles/layout.css";
 import "@/styles/sidebar.css";
 import "@/styles/navbar.css";
+import "@/styles/dashboard.css"
 
 export const metadata: Metadata = {
   title: "Student Dashboard",
