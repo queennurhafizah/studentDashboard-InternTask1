@@ -6,6 +6,7 @@ import InputAdornment from "@mui/material/InputAdornment";
 import TextField from "@mui/material/TextField";
 import Avatar from "@mui/material/Avatar";
 import { useSearch } from "@/components/searchProvider";
+import Link from "next/link";
 
 const pageInfo: Record<string, { title: string; subtitle: string }> = {
   "/": { title: "Dashboard", subtitle: "Ringkasan data siswa" },
@@ -44,13 +45,17 @@ export default function Navbar() {
         />
       </div>
 
-      <div className="navbar-profile">
+      <Link
+        href="/settings"
+        className="navbar-profile"
+        aria-label="Buka pengaturan akun"
+      >
         <Avatar className="navbar-avatar">AD</Avatar>
         <div className="navbar-user">
           <span className="navbar-name">Admin</span>
           <span className="navbar-role">Guru</span>
         </div>
-      </div>
+      </Link>
     </header>
   );
 }
