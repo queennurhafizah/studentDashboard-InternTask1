@@ -10,6 +10,7 @@ import "@/styles/navbar.css";
 import "@/styles/dashboard.css";
 import "@/styles/students.css";
 import { SearchProvider } from "@/components/searchProvider";
+import "@/styles/settings.css";
 
 export const metadata: Metadata = {
   title: "Student Dashboard",
