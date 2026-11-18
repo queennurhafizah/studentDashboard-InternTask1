@@ -1,16 +1,16 @@
 import type { Metadata } from "next";
-import "./globals.css";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v15-appRouter";
 import CssBaseline from "@mui/material/CssBaseline";
-import Sidebar from "@/components/sidebar";
+import DashboardShell from "@/components/dashboardShell";
 import Navbar from "@/components/navbar";
+import "./globals.css";
 import "@/styles/layout.css";
 import "@/styles/sidebar.css";
 import "@/styles/navbar.css";
 
 export const metadata: Metadata = {
   title: "Student Dashboard",
-  description: "Dashboard data for students",
+  description: "Dashboard data siswa",
 };
 
 export default function RootLayout({
@@ -19,16 +19,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="id">
       <body>
         <AppRouterCacheProvider options={{ enableCssLayer: true }}>
           <CssBaseline />
-          <div className="layout">
-            <Sidebar />
-            <main className="content">
-              <Navbar /> {children}
-            </main>
-          </div>
+          <DashboardShell>
+            <Navbar />
+            {children}
+          </DashboardShell>
         </AppRouterCacheProvider>
       </body>
     </html>
