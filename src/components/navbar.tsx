@@ -5,6 +5,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import InputAdornment from "@mui/material/InputAdornment";
 import TextField from "@mui/material/TextField";
 import Avatar from "@mui/material/Avatar";
+import { useSearch } from "@/components/searchProvider";
 
 const pageInfo: Record<string, { title: string; subtitle: string }> = {
   "/": { title: "Dashboard", subtitle: "Ringkasan data siswa" },
@@ -14,6 +15,7 @@ const pageInfo: Record<string, { title: string; subtitle: string }> = {
 
 export default function Navbar() {
   const pathname = usePathname();
+  const { query, setQuery } = useSearch();
   const info = pageInfo[pathname] ?? { title: "Halaman", subtitle: "" };
 
   return (
@@ -26,13 +28,15 @@ export default function Navbar() {
       <div className="navbar-search">
         <TextField
           size="small"
-          placeholder="Cari siswa..."
+          placeholder="Cari nama, NIS, kelas, atau gender..."
           variant="outlined"
+          value={query}
+          onChange={(event) => setQuery(event.target.value)}
           slotProps={{
             input: {
               startAdornment: (
                 <InputAdornment position="start">
-                  <SearchIcon fontSize="small" sx={{color: "#94a3b8" }} />
+                  <SearchIcon fontSize="small" sx={{ color: "#94a3b8" }} />
                 </InputAdornment>
               ),
             },
@@ -41,9 +45,7 @@ export default function Navbar() {
       </div>
 
       <div className="navbar-profile">
-        <Avatar className="navbar-avatar">
-          AD
-        </Avatar>
+        <Avatar className="navbar-avatar">AD</Avatar>
         <div className="navbar-user">
           <span className="navbar-name">Admin</span>
           <span className="navbar-role">Guru</span>

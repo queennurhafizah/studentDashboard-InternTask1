@@ -7,8 +7,9 @@ import "./globals.css";
 import "@/styles/layout.css";
 import "@/styles/sidebar.css";
 import "@/styles/navbar.css";
-import "@/styles/dashboard.css"
-import "@/styles/students.css"
+import "@/styles/dashboard.css";
+import "@/styles/students.css";
+import { SearchProvider } from "@/components/searchProvider";
 
 export const metadata: Metadata = {
   title: "Student Dashboard",
@@ -25,10 +26,12 @@ export default function RootLayout({
       <body>
         <AppRouterCacheProvider options={{ enableCssLayer: true }}>
           <CssBaseline />
-          <DashboardShell>
-            <Navbar />
-            {children}
-          </DashboardShell>
+          <SearchProvider>
+            <DashboardShell>
+              <Navbar />
+              {children}
+            </DashboardShell>
+          </SearchProvider>
         </AppRouterCacheProvider>
       </body>
     </html>

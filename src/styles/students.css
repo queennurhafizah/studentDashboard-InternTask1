@@ -150,3 +150,9 @@
     font-size: 13px;
   }
 }
+
+.student-empty {
+  padding: 32px 20px !important;
+  color: #94a3b8;
+  font-size: 14px;
+}

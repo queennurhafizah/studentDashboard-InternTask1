@@ -19,7 +19,6 @@ export default function StudentTable({ students }: StudentTableProps) {
       <Table className="student-table">
         <TableHead>
           <TableRow>
-            <TableCell align="center" className="col-no">No</TableCell>
             <TableCell>Nama</TableCell>
             <TableCell>NIS</TableCell>
             <TableCell>Kelas</TableCell>
@@ -29,28 +28,20 @@ export default function StudentTable({ students }: StudentTableProps) {
         </TableHead>
 
         <TableBody>
-          {students.map((student, index) => (
+          {students.length === 0 && (
+            <TableRow>
+              <TableCell colSpan={6} align="center" className="student-empty">
+                Data siswa tidak ditemukan
+              </TableCell>
+            </TableRow>
+          )}
+          {students.map((student) => (
             <TableRow key={student.id} hover>
-              <TableCell align="center" className="col-no">
-                {index + 1}
-              </TableCell>
-              <TableCell>
-                <span className="student-name">{student.name}</span>
-              </TableCell>
+              <TableCell>{student.name}</TableCell>
               <TableCell>{student.nis}</TableCell>
+              <TableCell>{student.kelas}</TableCell>
               <TableCell>
-                <span className="kelas-badge">{student.kelas}</span>
-              </TableCell>
-              <TableCell>
-                <Chip
-                  label={student.gender === "L" ? "Laki-laki" : "Perempuan"}
-                  size="small"
-                  className={
-                    student.gender === "L"
-                      ? "gender-chip gender-chip--blue"
-                      : "gender-chip gender-chip--pink"
-                  }
-                />
+                {student.gender === "L" ? "Laki-laki" : "Perempuan"}
               </TableCell>
               <TableCell>
                 <Chip
