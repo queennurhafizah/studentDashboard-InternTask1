@@ -1,5 +1,5 @@
 import { students } from "../../data/student";
 
 export default function Page() {
-  return <h1>Dashboard</h1>;
+  return <p>Selamat datang di Student Dashboard</p>;
 }

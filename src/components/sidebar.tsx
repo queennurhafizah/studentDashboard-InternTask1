@@ -2,17 +2,15 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import DashboardIcon from "@mui/icons-material/Dashboard";
-import PeopleIcon from "@mui/icons-material/People";
-import SettingsIcon from "@mui/icons-material/Settings";
+import DashboardOutlinedIcon from "@mui/icons-material/DashboardOutlined";
+import PeopleOutlinedIcon from '@mui/icons-material/PeopleOutlined';
+import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
 import { ChevronLeft } from "@mui/icons-material";
-import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-import LogoutIcon from "@mui/icons-material/Logout";
 
 const mainMenu = [
-    {label: "Dashboard", href: "/", icon: <DashboardIcon />},
-    {label: "Data Siswa", href: "/students", icon: <PeopleIcon />},
-    {label: "Pengaturan", href: "/settings", icon: <SettingsIcon />}
+    {label: "Dashboard", href: "/", icon: <DashboardOutlinedIcon />},
+    {label: "Data Siswa", href: "/students", icon: <PeopleOutlinedIcon />},
+    {label: "Pengaturan", href: "/settings", icon: <SettingsOutlinedIcon />}
 ]
 
 export default function Sidebar() {
