@@ -3,7 +3,7 @@
 import { Student } from "@/data/student";
 import { filterStudents } from "@/lib/filterStudents";
 import { useSearch } from "@/components/searchProvider";
-import StudentTable from "@/components/studentTable";
+import StudentTable from "@/components/students/studentTable";
 
 type StudentsViewProps = {
   students: Student[];

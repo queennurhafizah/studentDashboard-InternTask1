@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v15-appRouter";
 import CssBaseline from "@mui/material/CssBaseline";
-import DashboardShell from "@/components/dashboardShell";
-import Navbar from "@/components/navbar";
+import DashboardShell from "@/components/layout/dashboardShell";
+import Navbar from "@/components/layout/navbar";
 import "./globals.css";
 import "@/styles/layout.css";
 import "@/styles/sidebar.css";
