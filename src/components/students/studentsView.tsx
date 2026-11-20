@@ -1,7 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Button from "@mui/material/Button";
+import TablePagination from "@mui/material/TablePagination";
 import AddIcon from "@mui/icons-material/Add";
 import { filterStudents } from "@/lib/filterStudents";
 import { useSearch } from "@/components/searchProvider";
@@ -20,8 +21,23 @@ export default function StudentsView() {
   const [formKey, setFormKey] = useState(0);
   const [deleteTarget, setDeleteTarget] = useState<Student | null>(null);
 
+  const [page, setPage] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(5);
+
   const filtered = filterStudents(students, query);
   const isFiltering = query.trim() !== "";
+
+  useEffect(() => {
+    setPage(0);
+  }, [query]);
+
+  const lastPage = Math.max(0, Math.ceil(filtered.length / rowsPerPage) - 1);
+  const currentPage = Math.min(page, lastPage);
+
+  const pageStudents = filtered.slice(
+    currentPage * rowsPerPage,
+    currentPage * rowsPerPage + rowsPerPage
+  );
 
   function checkNisTaken(nis: string): string | null {
     const owner = students.find(
@@ -80,9 +96,25 @@ export default function StudentsView() {
       </div>
 
       <StudentTable
-        students={filtered}
+        students={pageStudents}
+        numberOffset={currentPage * rowsPerPage}
         onEdit={openEdit}
         onDelete={(student) => setDeleteTarget(student)}
+      />
+
+      <TablePagination
+        component="div"
+        className="students-pagination"
+        count={filtered.length}
+        page={currentPage}
+        rowsPerPage={rowsPerPage}
+        rowsPerPageOptions={[5, 10]}
+        labelRowsPerPage="Baris per halaman"
+        onPageChange={(_event, newPage) => setPage(newPage)}
+        onRowsPerPageChange={(event) => {
+          setRowsPerPage(parseInt(event.target.value, 10));
+          setPage(0);
+        }}
       />
 
       <StudentFormDialog

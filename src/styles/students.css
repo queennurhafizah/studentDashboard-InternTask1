@@ -350,3 +350,48 @@
   margin-top: 6px;
   font-size: 12px;
 }
+
+.students-pagination.MuiTablePagination-root {
+  border-top: 1px solid #e2e8f0;
+  color: #64748b;
+  font-size: 13px;
+}
+
+.students-pagination .MuiToolbar-root {
+  padding-left: 16px;
+  padding-right: 16px;
+  min-height: 56px;
+}
+
+.students-pagination .MuiTablePagination-selectLabel,
+.students-pagination .MuiTablePagination-displayedRows {
+  margin: 0;
+  font-size: 13px;
+}
+
+.students-pagination .MuiTablePagination-select {
+  border-radius: 8px;
+}
+
+.students-pagination .MuiIconButton-root {
+  color: #4f46e5;
+}
+
+.students-pagination .MuiIconButton-root.Mui-disabled {
+  color: #cbd5e1;
+}
+
+.students-pagination .MuiTablePagination-selectIcon {
+  color: #4f46e5;
+}
+
+@media (max-width: 768px) {
+  .students-pagination .MuiTablePagination-selectLabel {
+    display: none;
+  }
+
+  .students-pagination .MuiToolbar-root {
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+}

@@ -14,11 +14,17 @@ import { Student } from "@/data/student";
 
 type StudentTableProps = {
   students: Student[];
+  numberOffset?: number;
   onEdit?: (student: Student) => void;
   onDelete?: (student: Student) => void;
 };
 
-export default function StudentTable({ students, onEdit, onDelete }: StudentTableProps) {
+export default function StudentTable({
+  students,
+  numberOffset = 0,
+  onEdit,
+  onDelete,
+}: StudentTableProps) {
   const showActions = Boolean(onEdit || onDelete);
   const colCount = showActions ? 7 : 6;
 
@@ -27,20 +33,30 @@ export default function StudentTable({ students, onEdit, onDelete }: StudentTabl
       <Table className="student-table">
         <TableHead>
           <TableRow className="student-table-head-row">
-            <TableCell align="center" className="col-no">No</TableCell>
+            <TableCell align="center" className="col-no">
+              No
+            </TableCell>
             <TableCell>Nama</TableCell>
             <TableCell>NIS</TableCell>
             <TableCell>Kelas</TableCell>
             <TableCell>Jenis Kelamin</TableCell>
             <TableCell>Status</TableCell>
-            {showActions && <TableCell align="center" className="col-actions">Aksi</TableCell>}
+            {showActions && (
+              <TableCell align="center" className="col-actions">
+                Aksi
+              </TableCell>
+            )}
           </TableRow>
         </TableHead>
 
         <TableBody>
           {students.length === 0 && (
             <TableRow>
-              <TableCell colSpan={colCount} align="center" className="student-empty">
+              <TableCell
+                colSpan={colCount}
+                align="center"
+                className="student-empty"
+              >
                 Data siswa tidak ditemukan
               </TableCell>
             </TableRow>
@@ -53,7 +69,7 @@ export default function StudentTable({ students, onEdit, onDelete }: StudentTabl
             return (
               <TableRow key={student.id} hover>
                 <TableCell align="center" className="col-no">
-                  {index + 1}
+                  {numberOffset + index + 1}
                 </TableCell>
                 <TableCell>
                   <span className="student-name">{student.name}</span>
