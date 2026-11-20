@@ -33,7 +33,7 @@ export default function StudentTable({ students, onEdit, onDelete }: StudentTabl
             <TableCell>Kelas</TableCell>
             <TableCell>Jenis Kelamin</TableCell>
             <TableCell>Status</TableCell>
-            {showActions && <TableCell align="center">Aksi</TableCell>}
+            {showActions && <TableCell align="center" className="col-actions">Aksi</TableCell>}
           </TableRow>
         </TableHead>
 
@@ -77,7 +77,7 @@ export default function StudentTable({ students, onEdit, onDelete }: StudentTabl
                   />
                 </TableCell>
                 {showActions && (
-                  <TableCell align="center">
+                  <TableCell align="center" className="col-actions">
                     <div className="student-actions">
                       {onEdit && (
                         <IconButton
