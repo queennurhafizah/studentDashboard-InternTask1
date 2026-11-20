@@ -1,36 +1,63 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Student Dashboard
 
-## Getting Started
+Dashboard sederhana untuk menampilkan dan mengelola data siswa, dibuat dengan Next.js (App Router), React, TypeScript, dan Material UI (MUI).
 
-First, run the development server:
+Project ini dibuat sebagai tugas praktik frontend di [nama tempat prakerin]. Seluruh data bersifat dummy dan disimpan di state lokal, sehingga akan kembali ke data awal saat halaman di-refresh.
+
+## Teknologi
+
+- Next.js 16 (App Router) dan React
+- TypeScript
+- Material UI (`@mui/material`, `@mui/icons-material`)
+- CSS biasa dengan Flexbox dan CSS Grid (tanpa Tailwind)
+- Git dan GitHub
+
+## Cara Menjalankan
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Buka `http://localhost:3000` di browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Fitur
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+**Dashboard**
+- Sapaan dengan tahun ajaran, semester, dan nama admin dari pengaturan
+- Empat kartu statistik: Total Siswa, Siswa Perempuan, Siswa Laki-laki, dan Total Kelas
+- Cuplikan 5 siswa teratas dan daftar siswa tidak aktif
 
-## Learn More
+**Data Siswa**
+- Tabel berisi No, Nama, NIS, Kelas, Jenis Kelamin, dan Status
+- Pencarian berdasarkan nama, NIS, kelas, atau jenis kelamin (dari navbar)
+- Tambah, ubah, dan hapus data siswa, dengan validasi wajib isi dan NIS tidak boleh ganda
+- Pagination dengan pilihan 5 atau 10 baris per halaman
 
-To learn more about Next.js, take a look at the following resources:
+**Pengaturan**
+- Informasi pengguna dan informasi sekolah
+- Perubahan disimpan ke state, dengan validasi nama, email, nama sekolah, dan tahun ajaran
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+**Umum**
+- Sidebar yang bisa dibuka dan ditutup, dan tampil sebagai ikon saat ditutup
+- Navbar dan layout responsif untuk desktop, tablet, dan HP
+- Tema warna MUI dibuat di `src/lib/theme.ts`
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Struktur Folder
 
-## Deploy on Vercel
+```
+src/
+├── app/            Routing Next.js (layout, halaman, globals.css)
+├── components/
+│   ├── layout/     Sidebar, Navbar, DashboardShell
+│   ├── dashboard/  StatCard, InactiveStudents
+│   ├── students/   StudentsView, StudentTable, dialog tambah/ubah/hapus
+│   ├── settings/   SettingsForm
+│   └── shared/     SearchProvider, ThemeRegistry
+├── context/        StudentsProvider, SettingsProvider (state global)
+├── data/           Data dummy siswa dan pengaturan
+├── lib/            Fungsi filter, hitung gender, dan tema MUI
+└── styles/         CSS per fitur (layout, sidebar, navbar, dashboard, students, settings)
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+##
