@@ -9,12 +9,14 @@ import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import MenuItem from "@mui/material/MenuItem";
 import TextField from "@mui/material/TextField";
+import { Student } from "@/data/student";
 import { StudentInput } from "@/components/context/studentsProvider";
 
 type StudentFormDialogProps = {
   open: boolean;
+  student?: Student | null;
   onClose: () => void;
-  onSubmit: (data: StudentInput) => void;
+  onSave: (data: StudentInput) => void;
 };
 
 const emptyForm: StudentInput = {
@@ -27,10 +29,25 @@ const emptyForm: StudentInput = {
 
 export default function StudentFormDialog({
   open,
+  student,
   onClose,
-  onSubmit,
+  onSave,
 }: StudentFormDialogProps) {
-  const [form, setForm] = useState<StudentInput>(emptyForm);
+  // Nilai awal form diambil dari siswa yang dipilih (mode ubah) atau kosong (mode tambah).
+  // Parent memberi key baru setiap kali dialog dibuka, sehingga state ini selalu segar.
+  const [form, setForm] = useState<StudentInput>(() =>
+    student
+      ? {
+          name: student.name,
+          nis: student.nis,
+          kelas: student.kelas,
+          gender: student.gender,
+          status: student.status,
+        }
+      : emptyForm
+  );
+
+  const isEdit = Boolean(student);
 
   function handleChange<K extends keyof StudentInput>(key: K, value: StudentInput[K]) {
     setForm((prev) => ({ ...prev, [key]: value }));
@@ -38,13 +55,12 @@ export default function StudentFormDialog({
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    onSubmit({
+    onSave({
       ...form,
       name: form.name.trim(),
       nis: form.nis.trim(),
       kelas: form.kelas.trim(),
     });
-    setForm(emptyForm);
     onClose();
   }
 
@@ -57,11 +73,15 @@ export default function StudentFormDialog({
       slotProps={{ paper: { className: "student-dialog" } }}
     >
       <form onSubmit={handleSubmit}>
-        <DialogTitle className="student-dialog-title">Tambah Siswa</DialogTitle>
+        <DialogTitle className="student-dialog-title">
+          {isEdit ? "Ubah Siswa" : "Tambah Siswa"}
+        </DialogTitle>
 
         <DialogContent>
           <DialogContentText className="student-dialog-subtitle">
-            Isi data siswa baru dengan lengkap. Field bertanda * wajib diisi.
+            {isEdit
+              ? "Perbarui data siswa. Field bertanda * wajib diisi."
+              : "Isi data siswa baru dengan lengkap. Field bertanda * wajib diisi."}
           </DialogContentText>
 
           <div className="student-form">

@@ -1,19 +1,26 @@
 "use client";
 
 import Chip from "@mui/material/Chip";
+import IconButton from "@mui/material/IconButton";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import TableContainer from "@mui/material/TableContainer";
+import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import { Student } from "@/data/student";
 
 type StudentTableProps = {
   students: Student[];
+  // Jika diberikan, kolom Aksi ditampilkan dengan tombol ubah
+  onEdit?: (student: Student) => void;
 };
 
-export default function StudentTable({ students }: StudentTableProps) {
+export default function StudentTable({ students, onEdit }: StudentTableProps) {
+  const showActions = Boolean(onEdit);
+  const colCount = showActions ? 7 : 6;
+
   return (
     <TableContainer className="student-table-wrapper">
       <Table className="student-table">
@@ -25,13 +32,14 @@ export default function StudentTable({ students }: StudentTableProps) {
             <TableCell>Kelas</TableCell>
             <TableCell>Jenis Kelamin</TableCell>
             <TableCell>Status</TableCell>
+            {showActions && <TableCell align="center">Aksi</TableCell>}
           </TableRow>
         </TableHead>
 
         <TableBody>
           {students.length === 0 && (
             <TableRow>
-              <TableCell colSpan={6} align="center" className="student-empty">
+              <TableCell colSpan={colCount} align="center" className="student-empty">
                 Data siswa tidak ditemukan
               </TableCell>
             </TableRow>
@@ -67,6 +75,18 @@ export default function StudentTable({ students }: StudentTableProps) {
                     className={`status-chip ${isAktif ? "status-chip--aktif" : "status-chip--nonaktif"}`}
                   />
                 </TableCell>
+                {showActions && onEdit && (
+                  <TableCell align="center">
+                    <IconButton
+                      size="small"
+                      className="student-edit-btn"
+                      onClick={() => onEdit(student)}
+                      aria-label={`Ubah data ${student.name}`}
+                    >
+                      <EditOutlinedIcon fontSize="small" />
+                    </IconButton>
+                  </TableCell>
+                )}
               </TableRow>
             );
           })}
