@@ -1,16 +1,14 @@
 "use client";
 
-import { Student } from "@/data/student";
 import { filterStudents } from "@/lib/filterStudents";
 import { useSearch } from "@/components/searchProvider";
+import { useStudents } from "@/components/context/studentsProvider";
 import StudentTable from "@/components/students/studentTable";
 
-type StudentsViewProps = {
-  students: Student[];
-};
-
-export default function StudentsView({ students }: StudentsViewProps) {
+export default function StudentsView() {
+  const { students } = useStudents();
   const { query } = useSearch();
+
   const filtered = filterStudents(students, query);
   const isFiltering = query.trim() !== "";
 

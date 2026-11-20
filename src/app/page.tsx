@@ -1,16 +1,20 @@
+"use client";
+
 import Link from "next/link";
 import GroupOutlinedIcon from "@mui/icons-material/GroupOutlined";
 import MaleOutlinedIcon from "@mui/icons-material/MaleOutlined";
 import FemaleOutlinedIcon from "@mui/icons-material/FemaleOutlined";
 import SchoolOutlinedIcon from "@mui/icons-material/SchoolOutlined";
 import StatCard from "@/components/dashboard/statCard";
-import StudentTable from "@/components/students/studentTable";
 import InactiveStudents from "@/components/dashboard/inactiveStudent";
-import { students } from "@/data/student";
+import StudentTable from "@/components/students/studentTable";
 import { initialSchool } from "@/data/settings";
 import { countByGender } from "@/lib/filterStudents";
+import { useStudents } from "@/components/context/studentsProvider";
 
 export default function Page() {
+  const { students } = useStudents();
+
   const totalSiswa = students.length;
   const totalLaki = countByGender(students, "L");
   const totalPerempuan = countByGender(students, "P");
@@ -21,7 +25,6 @@ export default function Page() {
 
   return (
     <section className="dashboard">
-      {/* Sapaan */}
       <div className="dashboard-greeting">
         <span className="dashboard-badge">
           {initialSchool.tahunAjaran} · Semester {initialSchool.semester}
@@ -32,7 +35,6 @@ export default function Page() {
         </p>
       </div>
 
-      {/* Statistik */}
       <div className="stats-grid">
         <StatCard
           title="Total Siswa"
@@ -60,7 +62,6 @@ export default function Page() {
         />
       </div>
 
-      {/* 5 siswa teratas dan siswa tidak aktif, berdampingan */}
       <div className="dashboard-split">
         <section className="students-card">
           <div className="students-card-header">

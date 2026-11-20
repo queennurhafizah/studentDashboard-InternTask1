@@ -11,6 +11,7 @@ import "@/styles/dashboard.css";
 import "@/styles/students.css";
 import { SearchProvider } from "@/components/searchProvider";
 import "@/styles/settings.css";
+import { StudentsProvider } from "@/components/context/studentsProvider";
 
 export const metadata: Metadata = {
   title: "Student Dashboard",
@@ -27,12 +28,14 @@ export default function RootLayout({
       <body>
         <AppRouterCacheProvider options={{ enableCssLayer: true }}>
           <CssBaseline />
-          <SearchProvider>
-            <DashboardShell>
-              <Navbar />
-              {children}
-            </DashboardShell>
-          </SearchProvider>
+          <StudentsProvider>
+            <SearchProvider>
+              <DashboardShell>
+                <Navbar />
+                {children}
+              </DashboardShell>
+            </SearchProvider>
+          </StudentsProvider>
         </AppRouterCacheProvider>
       </body>
     </html>
