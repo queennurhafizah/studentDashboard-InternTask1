@@ -207,3 +207,25 @@
     display: none;
   }
 }
+
+.navbar-date {
+  grid-area: search;
+  justify-self: center;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #475569;
+}
+
+.navbar-date svg {
+  color: #4f46e5;
+}
+
+@media (max-width: 768px) {
+  .navbar-date {
+    justify-self: start;
+    font-size: 13px;
+  }
+}
