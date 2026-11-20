@@ -283,3 +283,41 @@
     padding: 12px 16px 16px;
   }
 }
+
+.student-edit-btn {
+  color: #4f46e5;
+  background-color: #eef2ff;
+}
+
+.student-edit-btn:hover {
+  background-color: #e0e7ff;
+}
+
+.student-actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.student-delete-btn {
+  color: #dc2626;
+  background-color: #fef2f2;
+}
+
+.student-delete-btn:hover {
+  background-color: #fee2e2;
+}
+
+.student-btn-delete.MuiButton-root {
+  text-transform: none;
+  font-weight: 600;
+  border-radius: 10px;
+  padding: 8px 20px;
+  background-color: #dc2626;
+  box-shadow: none;
+}
+
+.student-btn-delete.MuiButton-root:hover {
+  background-color: #b91c1c;
+  box-shadow: none;
+}

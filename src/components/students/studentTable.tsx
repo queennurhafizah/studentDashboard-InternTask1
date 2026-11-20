@@ -9,16 +9,17 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import TableContainer from "@mui/material/TableContainer";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
+import DeleteOutlineIcon from "@mui/icons-material/DeleteOutlineOutlined";
 import { Student } from "@/data/student";
 
 type StudentTableProps = {
   students: Student[];
-  // Jika diberikan, kolom Aksi ditampilkan dengan tombol ubah
   onEdit?: (student: Student) => void;
+  onDelete?: (student: Student) => void;
 };
 
-export default function StudentTable({ students, onEdit }: StudentTableProps) {
-  const showActions = Boolean(onEdit);
+export default function StudentTable({ students, onEdit, onDelete }: StudentTableProps) {
+  const showActions = Boolean(onEdit || onDelete);
   const colCount = showActions ? 7 : 6;
 
   return (
@@ -75,16 +76,30 @@ export default function StudentTable({ students, onEdit }: StudentTableProps) {
                     className={`status-chip ${isAktif ? "status-chip--aktif" : "status-chip--nonaktif"}`}
                   />
                 </TableCell>
-                {showActions && onEdit && (
+                {showActions && (
                   <TableCell align="center">
-                    <IconButton
-                      size="small"
-                      className="student-edit-btn"
-                      onClick={() => onEdit(student)}
-                      aria-label={`Ubah data ${student.name}`}
-                    >
-                      <EditOutlinedIcon fontSize="small" />
-                    </IconButton>
+                    <div className="student-actions">
+                      {onEdit && (
+                        <IconButton
+                          size="small"
+                          className="student-edit-btn"
+                          onClick={() => onEdit(student)}
+                          aria-label={`Ubah data ${student.name}`}
+                        >
+                          <EditOutlinedIcon fontSize="small" />
+                        </IconButton>
+                      )}
+                      {onDelete && (
+                        <IconButton
+                          size="small"
+                          className="student-delete-btn"
+                          onClick={() => onDelete(student)}
+                          aria-label={`Hapus data ${student.name}`}
+                        >
+                          <DeleteOutlineIcon fontSize="small" />
+                        </IconButton>
+                      )}
+                    </div>
                   </TableCell>
                 )}
               </TableRow>

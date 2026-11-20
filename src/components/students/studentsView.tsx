@@ -9,14 +9,18 @@ import { useStudents } from "@/components/context/studentsProvider";
 import { Student } from "@/data/student";
 import StudentTable from "@/components/students/studentTable";
 import StudentFormDialog from "@/components/students/studentFormDialog";
+import DeleteConfirmDialog from "@/components/students/deleteConfirmDialog";
 
 export default function StudentsView() {
-  const { students, addStudent, updateStudent } = useStudents();
+  const { students, addStudent, updateStudent, deleteStudent } = useStudents();
   const { query } = useSearch();
 
   const [dialogOpen, setDialogOpen] = useState(false);
   const [editingStudent, setEditingStudent] = useState<Student | null>(null);
   const [formKey, setFormKey] = useState(0);
+
+  // Siswa yang sedang menunggu konfirmasi hapus
+  const [deleteTarget, setDeleteTarget] = useState<Student | null>(null);
 
   const filtered = filterStudents(students, query);
   const isFiltering = query.trim() !== "";
@@ -41,6 +45,13 @@ export default function StudentsView() {
     }
   }
 
+  function handleConfirmDelete() {
+    if (deleteTarget) {
+      deleteStudent(deleteTarget.id);
+    }
+    setDeleteTarget(null);
+  }
+
   return (
     <section className="students-card">
       <div className="students-card-header">
@@ -63,7 +74,11 @@ export default function StudentsView() {
         </Button>
       </div>
 
-      <StudentTable students={filtered} onEdit={openEdit} />
+      <StudentTable
+        students={filtered}
+        onEdit={openEdit}
+        onDelete={(student) => setDeleteTarget(student)}
+      />
 
       <StudentFormDialog
         key={formKey}
@@ -71,6 +86,13 @@ export default function StudentsView() {
         student={editingStudent}
         onClose={() => setDialogOpen(false)}
         onSave={handleSave}
+      />
+
+      <DeleteConfirmDialog
+        open={deleteTarget !== null}
+        student={deleteTarget}
+        onClose={() => setDeleteTarget(null)}
+        onConfirm={handleConfirmDelete}
       />
     </section>
   );
