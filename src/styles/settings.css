@@ -38,13 +38,17 @@
 }
 
 .settings-field .MuiOutlinedInput-root {
-  min-height: 45px;
+  min-height: 52px;
   padding-top: 4px;
   padding-bottom: 4px;
+  border-radius: 12px;
+  background-color: #f8fafc;
+  font-size: 14px;
 }
 
-.settings-field .MuiOutlinedInput-input {
-  padding: 14px 14px;
+.settings-field .MuiOutlinedInput-input,
+.settings-field .MuiSelect-select {
+  padding: 14px;
   font-size: 14px;
 }
 
@@ -77,9 +81,9 @@
   color: #4f46e5;
 }
 
-.settings-field .MuiSelect-select {
-  padding: 14px 14px;
-  font-size: 14px;
+.settings-field .MuiFormHelperText-root {
+  margin-top: 6px;
+  font-size: 12px;
 }
 
 .settings-actions {
@@ -92,6 +96,11 @@
 .settings-saved {
   font-size: 13px;
   color: #059669;
+}
+
+.settings-unsaved {
+  font-size: 13px;
+  color: #b45309;
 }
 
 .settings-save-btn.MuiButton-root {
@@ -108,9 +117,9 @@
   box-shadow: none;
 }
 
-.settings-unsaved {
-  font-size: 13px;
-  color: #b45309;
+.settings-save-btn.MuiButton-root.Mui-disabled {
+  background-color: #c7d2fe;
+  color: #ffffff;
 }
 
 .settings-reset-btn.MuiButton-root {
@@ -123,16 +132,6 @@
 
 .settings-reset-btn.MuiButton-root:hover {
   background-color: #eef2ff;
-}
-
-.settings-save-btn.MuiButton-root.Mui-disabled {
-  background-color: #c7d2fe;
-  color: #ffffff;
-}
-
-.settings-field .MuiFormHelperText-root {
-  margin-top: 6px;
-  font-size: 12px;
 }
 
 @media (max-width: 1024px) {

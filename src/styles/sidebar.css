@@ -12,7 +12,6 @@
   border-radius: 0 24px 24px 0;
   box-shadow: 4px 0 24px rgba(15, 23, 42, 0.04);
   overflow: hidden;
-  transition: padding 0.25s ease;
 }
 
 .sidebar-header {
@@ -113,7 +112,19 @@
   padding: 12px 0;
 }
 
+.sidebar-backdrop {
+  display: none;
+}
+
 @media (max-width: 768px) {
+  .layout:not(.is-collapsed) .sidebar-backdrop {
+    display: block;
+    position: fixed;
+    inset: 0;
+    z-index: 40;
+    background-color: rgba(15, 23, 42, 0.35);
+  }
+
   .layout:not(.is-collapsed) .sidebar {
     position: fixed;
     top: 0;

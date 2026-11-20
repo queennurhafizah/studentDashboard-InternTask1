@@ -89,6 +89,12 @@
   background-color: #f8fafc;
 }
 
+.student-table .student-empty {
+  padding: 32px 20px;
+  color: #94a3b8;
+  font-size: 14px;
+}
+
 .student-table .col-no {
   width: 56px;
   color: #94a3b8;
@@ -103,6 +109,8 @@
 .kelas-badge {
   display: inline-block;
   padding: 4px 10px;
+  border-radius: 8px;
+  background-color: #f1f5f9;
   color: #0f172a;
   font-size: 12px;
   font-weight: 600;
@@ -140,10 +148,28 @@
   color: #ffffff;
 }
 
-.student-table .student-empty {
-  padding: 32px 20px;
-  color: #94a3b8;
-  font-size: 14px;
+.student-actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.student-edit-btn {
+  color: #4f46e5;
+  background-color: #eef2ff;
+}
+
+.student-edit-btn:hover {
+  background-color: #e0e7ff;
+}
+
+.student-delete-btn {
+  color: #dc2626;
+  background-color: #fef2f2;
+}
+
+.student-delete-btn:hover {
+  background-color: #fee2e2;
 }
 
 .student-dialog {
@@ -165,6 +191,11 @@
   margin: 0 0 20px;
   font-size: 13px;
   color: #64748b;
+}
+
+.student-dialog .MuiDialogActions-root {
+  padding: 16px 24px 20px;
+  gap: 12px;
 }
 
 .student-form {
@@ -195,6 +226,10 @@
   color: #64748b;
 }
 
+.student-field .MuiInputLabel-root.Mui-focused {
+  color: #4f46e5;
+}
+
 .student-field .MuiOutlinedInput-notchedOutline {
   border-color: #e2e8f0;
 }
@@ -214,13 +249,9 @@
   border-width: 1px;
 }
 
-.student-field .MuiInputLabel-root.Mui-focused {
-  color: #4f46e5;
-}
-
-.student-dialog .MuiDialogActions-root {
-  padding: 16px 24px 20px;
-  gap: 12px;
+.student-field .MuiFormHelperText-root {
+  margin-top: 6px;
+  font-size: 12px;
 }
 
 .student-btn-cancel.MuiButton-root {
@@ -235,13 +266,17 @@
   background-color: #eef2ff;
 }
 
-.student-btn-save.MuiButton-root {
+.student-btn-save.MuiButton-root,
+.student-btn-delete.MuiButton-root {
   text-transform: none;
   font-weight: 600;
   border-radius: 10px;
   padding: 8px 20px;
-  background-color: #4f46e5;
   box-shadow: none;
+}
+
+.student-btn-save.MuiButton-root {
+  background-color: #4f46e5;
 }
 
 .student-btn-save.MuiButton-root:hover {
@@ -249,14 +284,53 @@
   box-shadow: none;
 }
 
+.student-btn-delete.MuiButton-root {
+  background-color: #dc2626;
+}
+
+.student-btn-delete.MuiButton-root:hover {
+  background-color: #b91c1c;
+  box-shadow: none;
+}
+
+.students-pagination.MuiTablePagination-root {
+  border-top: 1px solid #e2e8f0;
+  color: #64748b;
+  font-size: 13px;
+}
+
+.students-pagination .MuiToolbar-root {
+  padding-left: 16px;
+  padding-right: 16px;
+  min-height: 56px;
+}
+
+.students-pagination .MuiTablePagination-selectLabel,
+.students-pagination .MuiTablePagination-displayedRows {
+  margin: 0;
+  font-size: 13px;
+}
+
+.students-pagination .MuiTablePagination-select {
+  border-radius: 8px;
+}
+
+.students-pagination .MuiIconButton-root {
+  color: #4f46e5;
+}
+
+.students-pagination .MuiIconButton-root.Mui-disabled {
+  color: #cbd5e1;
+}
+
+.students-pagination .MuiTablePagination-selectIcon {
+  color: #4f46e5;
+}
+
 @media (max-width: 1024px) {
   .student-table .MuiTableCell-head,
   .student-table .MuiTableCell-body {
     padding: 10px 14px;
-  }
-
-  .students-add-btn.MuiButton-root {
-    margin-left: 24px;
   }
 }
 
@@ -306,86 +380,7 @@
   .student-btn-delete.MuiButton-root {
     width: 100%;
   }
-}
 
-.student-edit-btn {
-  color: #4f46e5;
-  background-color: #eef2ff;
-}
-
-.student-edit-btn:hover {
-  background-color: #e0e7ff;
-}
-
-.student-actions {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.student-delete-btn {
-  color: #dc2626;
-  background-color: #fef2f2;
-}
-
-.student-delete-btn:hover {
-  background-color: #fee2e2;
-}
-
-.student-btn-delete.MuiButton-root {
-  text-transform: none;
-  font-weight: 600;
-  border-radius: 10px;
-  padding: 8px 20px;
-  background-color: #dc2626;
-  box-shadow: none;
-}
-
-.student-btn-delete.MuiButton-root:hover {
-  background-color: #b91c1c;
-  box-shadow: none;
-}
-
-.student-field .MuiFormHelperText-root {
-  margin-top: 6px;
-  font-size: 12px;
-}
-
-.students-pagination.MuiTablePagination-root {
-  border-top: 1px solid #e2e8f0;
-  color: #64748b;
-  font-size: 13px;
-}
-
-.students-pagination .MuiToolbar-root {
-  padding-left: 16px;
-  padding-right: 16px;
-  min-height: 56px;
-}
-
-.students-pagination .MuiTablePagination-selectLabel,
-.students-pagination .MuiTablePagination-displayedRows {
-  margin: 0;
-  font-size: 13px;
-}
-
-.students-pagination .MuiTablePagination-select {
-  border-radius: 8px;
-}
-
-.students-pagination .MuiIconButton-root {
-  color: #4f46e5;
-}
-
-.students-pagination .MuiIconButton-root.Mui-disabled {
-  color: #cbd5e1;
-}
-
-.students-pagination .MuiTablePagination-selectIcon {
-  color: #4f46e5;
-}
-
-@media (max-width: 768px) {
   .students-pagination .MuiTablePagination-selectLabel {
     display: none;
   }

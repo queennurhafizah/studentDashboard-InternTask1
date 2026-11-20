@@ -22,10 +22,6 @@
   grid-template-columns: 72px minmax(0, 1fr);
 }
 
-.sidebar-backdrop {
-  display: none;
-}
-
 @media (max-width: 1024px) {
   .layout {
     grid-template-columns: 200px minmax(0, 1fr);
@@ -43,13 +39,5 @@
 
   .content {
     padding: 16px;
-  }
-
-  .layout:not(.is-collapsed) .sidebar-backdrop {
-    display: block;
-    position: fixed;
-    inset: 0;
-    z-index: 40;
-    background-color: rgba(15, 23, 42, 0.35);
   }
 }
