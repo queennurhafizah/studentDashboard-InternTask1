@@ -8,9 +8,9 @@ import SchoolOutlinedIcon from "@mui/icons-material/SchoolOutlined";
 import StatCard from "@/components/dashboard/statCard";
 import InactiveStudents from "@/components/dashboard/inactiveStudent";
 import StudentTable from "@/components/students/studentTable";
-import { initialSchool } from "@/data/settings";
 import { countByGender } from "@/lib/filterStudents";
 import { useStudents } from "@/components/context/studentsProvider";
+import { useSettings } from "@/components/context/settingsProvider";
 
 export default function Page() {
   const { students } = useStudents();
@@ -19,7 +19,7 @@ export default function Page() {
   const totalLaki = countByGender(students, "L");
   const totalPerempuan = countByGender(students, "P");
   const totalKelas = new Set(students.map((s) => s.kelas)).size;
-
+  const { user, school } = useSettings();
   const topStudents = students.slice(0, 5);
   const inactiveStudents = students.filter((s) => s.status === "Tidak Aktif");
 
@@ -27,11 +27,13 @@ export default function Page() {
     <section className="dashboard">
       <div className="dashboard-greeting">
         <span className="dashboard-badge">
-          {initialSchool.tahunAjaran} · Semester {initialSchool.semester}
+          {school.tahunAjaran} · Semester {school.semester}
         </span>
-        <h2 className="dashboard-greeting-title">Selamat datang, Admin</h2>
+        <h2 className="dashboard-greeting-title">
+          Selamat datang, {user.nama}
+        </h2>
         <p className="dashboard-greeting-text">
-          Berikut ringkasan data siswa {initialSchool.namaSekolah} saat ini.
+          Berikut ringkasan data siswa {school.namaSekolah} saat ini.
         </p>
       </div>
 

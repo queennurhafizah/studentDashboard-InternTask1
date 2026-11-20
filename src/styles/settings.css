@@ -108,6 +108,33 @@
   box-shadow: none;
 }
 
+.settings-unsaved {
+  font-size: 13px;
+  color: #b45309;
+}
+
+.settings-reset-btn.MuiButton-root {
+  text-transform: none;
+  font-weight: 600;
+  color: #4f46e5;
+  border-radius: 12px;
+  padding: 10px 16px;
+}
+
+.settings-reset-btn.MuiButton-root:hover {
+  background-color: #eef2ff;
+}
+
+.settings-save-btn.MuiButton-root.Mui-disabled {
+  background-color: #c7d2fe;
+  color: #ffffff;
+}
+
+.settings-field .MuiFormHelperText-root {
+  margin-top: 6px;
+  font-size: 12px;
+}
+
 @media (max-width: 1024px) {
   .settings-grid {
     gap: 14px 16px;

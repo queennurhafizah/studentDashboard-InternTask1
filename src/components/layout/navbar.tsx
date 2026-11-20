@@ -8,6 +8,7 @@ import Avatar from "@mui/material/Avatar";
 import SearchIcon from "@mui/icons-material/Search";
 import CalendarTodayOutlinedIcon from "@mui/icons-material/CalendarTodayOutlined";
 import { useSearch } from "@/components/searchProvider";
+import { useSettings } from "@/components/context/settingsProvider";
 
 const pageInfo: Record<string, { title: string; subtitle: string }> = {
   "/": { title: "Dashboard", subtitle: "Ringkasan data siswa" },
@@ -22,10 +23,21 @@ const todayText = new Date().toLocaleDateString("id-ID", {
   year: "numeric",
 });
 
+function getInitials(name: string) {
+  return name
+    .trim()
+    .split(/\s+/)
+    .map((word) => word.charAt(0))
+    .slice(0, 2)
+    .join("")
+    .toUpperCase();
+}
+
 export default function Navbar() {
   const pathname = usePathname();
   const info = pageInfo[pathname] ?? { title: "Halaman", subtitle: "" };
   const { query, setQuery } = useSearch();
+  const { user } = useSettings();
 
   return (
     <header className="navbar">
@@ -63,10 +75,10 @@ export default function Navbar() {
       )}
 
       <Link href="/settings" className="navbar-profile" aria-label="Buka pengaturan akun">
-        <Avatar className="navbar-avatar">AD</Avatar>
+        <Avatar className="navbar-avatar">{getInitials(user.nama)}</Avatar>
         <div className="navbar-user">
-          <span className="navbar-name">Admin</span>
-          <span className="navbar-role">Guru</span>
+          <span className="navbar-name">{user.nama}</span>
+          <span className="navbar-role">{user.jabatan}</span>
         </div>
       </Link>
     </header>
