@@ -1,6 +1,3 @@
-/* ===== DATA SISWA ===== */
-
-/* Kartu pembungkus tabel */
 .students-card {
   background-color: #ffffff;
   border: 1px solid #e2e8f0;
@@ -13,9 +10,17 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-wrap: wrap;
   gap: 12px;
   padding: 16px 20px;
   border-bottom: 1px solid #e2e8f0;
+}
+
+.students-card-heading {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
 }
 
 .students-card-title {
@@ -34,7 +39,21 @@
   color: #4f46e5;
 }
 
-/* Wrapper tabel: bisa digeser ke samping di layar kecil */
+.students-add-btn.MuiButton-root {
+  text-transform: none;
+  font-weight: 600;
+  border-radius: 10px;
+  padding: 8px 16px;
+  background-color: #4f46e5;
+  box-shadow: none;
+  margin-left: 24px;
+}
+
+.students-add-btn.MuiButton-root:hover {
+  background-color: #4338ca;
+  box-shadow: none;
+}
+
 .student-table-wrapper {
   width: 100%;
   overflow-x: auto;
@@ -44,19 +63,17 @@
   min-width: 680px;
 }
 
-/* Header tabel */
 .student-table .MuiTableCell-head {
   font-size: 12px;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.04em;
-  color: #64748b;
-  background-color: #f8fafc;
-  border-bottom: 1px solid #e2e8f0;
+  color: #475569;
+  background-color: #f1f5f9;
+  border-bottom: 2px solid #cbd5e1;
   padding: 12px 20px;
 }
 
-/* Isi tabel */
 .student-table .MuiTableCell-body {
   font-size: 14px;
   color: #334155;
@@ -68,13 +85,11 @@
   border-bottom: none;
 }
 
-/* Efek hover baris */
-.student-table .MuiTableRow-root.MuiTableRow-hover:hover .MuiTableCell-body {
+.student-table .MuiTableRow-hover:hover .MuiTableCell-body {
   background-color: #f8fafc;
 }
 
-/* Kolom nomor */
-.col-no {
+.student-table .col-no {
   width: 56px;
   color: #94a3b8;
   font-weight: 600;
@@ -85,63 +100,173 @@
   color: #0f172a;
 }
 
-/* Badge kelas */
 .kelas-badge {
   display: inline-block;
   padding: 4px 10px;
-  border-radius: 8px;
-  background-color: #f1f5f9;
-  color: #334155;
+  color: #0f172a;
   font-size: 12px;
   font-weight: 600;
 }
 
-/* Chip gender: biru untuk laki-laki, pink untuk perempuan */
-.gender-chip {
+.student-table .MuiChip-root.gender-chip {
   font-size: 12px;
   font-weight: 600;
   border-radius: 999px;
 }
 
-.gender-chip--blue {
-  background-color: #eff6ff;
-  color: #2563eb;
+.student-table .MuiChip-root.gender-chip--blue {
+  background-color: #dbeafe;
+  color: #1d4ed8;
 }
 
-.gender-chip--pink {
-  background-color: #fdf2f8;
-  color: #db2777;
+.student-table .MuiChip-root.gender-chip--pink {
+  background-color: #fce7f3;
+  color: #cc3976;
 }
 
-/* Chip status: hijau untuk aktif, merah untuk tidak aktif */
-.status-chip {
+.student-table .MuiChip-root.status-chip {
   font-size: 12px;
   font-weight: 600;
   border-radius: 999px;
 }
 
-.status-chip--aktif {
-  background-color: #ecfdf5;
-  color: #059669;
+.student-table .MuiChip-root.status-chip--aktif {
+  background-color: #56c780;
+  color: #ffffff;
 }
 
-.status-chip--nonaktif {
-  background-color: #fef2f2;
-  color: #dc2626;
+.student-table .MuiChip-root.status-chip--nonaktif {
+  background-color: #ef4444;
+  color: #ffffff;
 }
 
-/* ===== TABLET (maksimal 1024px) ===== */
+.student-table .student-empty {
+  padding: 32px 20px;
+  color: #94a3b8;
+  font-size: 14px;
+}
+
+.student-dialog {
+  border-radius: 20px;
+}
+
+.student-dialog-title {
+  padding: 24px 24px 4px !important;
+  font-size: 20px;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.student-dialog .MuiDialogContent-root {
+  padding: 8px 24px 20px;
+}
+
+.student-dialog-subtitle.MuiDialogContentText-root {
+  margin: 0 0 20px;
+  font-size: 13px;
+  color: #64748b;
+}
+
+.student-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.student-field .MuiOutlinedInput-root {
+  min-height: 52px;
+  border-radius: 12px;
+  background-color: #f8fafc;
+  font-size: 14px;
+}
+
+.student-field .MuiOutlinedInput-input {
+  padding: 14px;
+}
+
+.student-field .MuiSelect-select.MuiOutlinedInput-input {
+  padding: 14px;
+  display: flex;
+  align-items: center;
+}
+
+.student-field .MuiInputLabel-root {
+  font-size: 14px;
+  color: #64748b;
+}
+
+.student-field .MuiOutlinedInput-notchedOutline {
+  border-color: #e2e8f0;
+}
+
+.student-field .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline {
+  border-color: #cbd5e1;
+}
+
+.student-field .MuiOutlinedInput-root.Mui-focused {
+  background-color: #ffffff;
+}
+
+.student-field
+  .MuiOutlinedInput-root.Mui-focused
+  .MuiOutlinedInput-notchedOutline {
+  border-color: #4f46e5;
+  border-width: 1px;
+}
+
+.student-field .MuiInputLabel-root.Mui-focused {
+  color: #4f46e5;
+}
+
+.student-dialog .MuiDialogActions-root {
+  padding: 16px 24px 20px;
+  gap: 12px;
+}
+
+.student-btn-cancel.MuiButton-root {
+  text-transform: none;
+  font-weight: 600;
+  color: #4f46e5;
+  border-radius: 10px;
+  padding: 8px 16px;
+}
+
+.student-btn-cancel.MuiButton-root:hover {
+  background-color: #eef2ff;
+}
+
+.student-btn-save.MuiButton-root {
+  text-transform: none;
+  font-weight: 600;
+  border-radius: 10px;
+  padding: 8px 20px;
+  background-color: #4f46e5;
+  box-shadow: none;
+}
+
+.student-btn-save.MuiButton-root:hover {
+  background-color: #4338ca;
+  box-shadow: none;
+}
+
 @media (max-width: 1024px) {
   .student-table .MuiTableCell-head,
   .student-table .MuiTableCell-body {
     padding: 10px 14px;
   }
+
+  .students-add-btn.MuiButton-root {
+    margin-left: 24px;
+  }
 }
 
-/* ===== HP (maksimal 768px) ===== */
 @media (max-width: 768px) {
   .students-card-header {
     padding: 14px 16px;
+  }
+
+  .students-add-btn.MuiButton-root {
+    margin-left: 12px;
   }
 
   .student-table .MuiTableCell-head,
@@ -149,10 +274,12 @@
     padding: 10px 12px;
     font-size: 13px;
   }
-}
 
-.student-empty {
-  padding: 32px 20px !important;
-  color: #94a3b8;
-  font-size: 14px;
+  .student-dialog .MuiDialogContent-root {
+    padding: 8px 16px 16px;
+  }
+
+  .student-dialog .MuiDialogActions-root {
+    padding: 12px 16px 16px;
+  }
 }
