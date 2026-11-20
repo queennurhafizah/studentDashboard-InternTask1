@@ -345,3 +345,8 @@
   background-color: #b91c1c;
   box-shadow: none;
 }
+
+.student-field .MuiFormHelperText-root {
+  margin-top: 6px;
+  font-size: 12px;
+}

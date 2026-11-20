@@ -18,12 +18,17 @@ export default function StudentsView() {
   const [dialogOpen, setDialogOpen] = useState(false);
   const [editingStudent, setEditingStudent] = useState<Student | null>(null);
   const [formKey, setFormKey] = useState(0);
-
-  // Siswa yang sedang menunggu konfirmasi hapus
   const [deleteTarget, setDeleteTarget] = useState<Student | null>(null);
 
   const filtered = filterStudents(students, query);
   const isFiltering = query.trim() !== "";
+
+  function checkNisTaken(nis: string): string | null {
+    const owner = students.find(
+      (s) => s.nis === nis && s.id !== editingStudent?.id
+    );
+    return owner ? owner.name : null;
+  }
 
   function openAdd() {
     setEditingStudent(null);
@@ -84,6 +89,7 @@ export default function StudentsView() {
         key={formKey}
         open={dialogOpen}
         student={editingStudent}
+        checkNisTaken={checkNisTaken}
         onClose={() => setDialogOpen(false)}
         onSave={handleSave}
       />

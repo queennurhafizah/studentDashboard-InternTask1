@@ -15,9 +15,12 @@ import { StudentInput } from "@/components/context/studentsProvider";
 type StudentFormDialogProps = {
   open: boolean;
   student?: Student | null;
+  checkNisTaken: (nis: string) => string | null;
   onClose: () => void;
   onSave: (data: StudentInput) => void;
 };
+
+type FormErrors = Partial<Record<"name" | "nis" | "kelas", string>>;
 
 const emptyForm: StudentInput = {
   name: "",
@@ -27,14 +30,33 @@ const emptyForm: StudentInput = {
   status: "Aktif",
 };
 
+function validateForm(form: StudentInput, nisTakenBy: string | null): FormErrors {
+  const errors: FormErrors = {};
+
+  if (form.name.trim() === "") {
+    errors.name = "Nama wajib diisi";
+  }
+
+  if (form.nis.trim() === "") {
+    errors.nis = "NIS wajib diisi";
+  } else if (nisTakenBy) {
+    errors.nis = `NIS sudah dipakai oleh ${nisTakenBy}`;
+  }
+
+  if (form.kelas.trim() === "") {
+    errors.kelas = "Kelas wajib diisi";
+  }
+
+  return errors;
+}
+
 export default function StudentFormDialog({
   open,
   student,
+  checkNisTaken,
   onClose,
   onSave,
 }: StudentFormDialogProps) {
-  // Nilai awal form diambil dari siswa yang dipilih (mode ubah) atau kosong (mode tambah).
-  // Parent memberi key baru setiap kali dialog dibuka, sehingga state ini selalu segar.
   const [form, setForm] = useState<StudentInput>(() =>
     student
       ? {
@@ -46,21 +68,34 @@ export default function StudentFormDialog({
         }
       : emptyForm
   );
+  const [errors, setErrors] = useState<FormErrors>({});
 
   const isEdit = Boolean(student);
 
   function handleChange<K extends keyof StudentInput>(key: K, value: StudentInput[K]) {
     setForm((prev) => ({ ...prev, [key]: value }));
+    if (key === "name" || key === "nis" || key === "kelas") {
+      setErrors((prev) => ({ ...prev, [key]: undefined }));
+    }
   }
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    onSave({
+
+    const cleaned: StudentInput = {
       ...form,
       name: form.name.trim(),
       nis: form.nis.trim(),
       kelas: form.kelas.trim(),
-    });
+    };
+
+    const nisTakenBy = cleaned.nis ? checkNisTaken(cleaned.nis) : null;
+    const newErrors = validateForm(cleaned, nisTakenBy);
+    setErrors(newErrors);
+
+    if (Object.keys(newErrors).length > 0) return;
+
+    onSave(cleaned);
     onClose();
   }
 
@@ -72,7 +107,7 @@ export default function StudentFormDialog({
       maxWidth="sm"
       slotProps={{ paper: { className: "student-dialog" } }}
     >
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} noValidate>
         <DialogTitle className="student-dialog-title">
           {isEdit ? "Ubah Siswa" : "Tambah Siswa"}
         </DialogTitle>
@@ -90,6 +125,8 @@ export default function StudentFormDialog({
               label="Nama"
               value={form.name}
               onChange={(e) => handleChange("name", e.target.value)}
+              error={Boolean(errors.name)}
+              helperText={errors.name}
               required
               fullWidth
             />
@@ -98,6 +135,8 @@ export default function StudentFormDialog({
               label="NIS"
               value={form.nis}
               onChange={(e) => handleChange("nis", e.target.value)}
+              error={Boolean(errors.nis)}
+              helperText={errors.nis}
               required
               fullWidth
             />
@@ -106,6 +145,8 @@ export default function StudentFormDialog({
               label="Kelas"
               value={form.kelas}
               onChange={(e) => handleChange("kelas", e.target.value)}
+              error={Boolean(errors.kelas)}
+              helperText={errors.kelas}
               required
               fullWidth
             />
